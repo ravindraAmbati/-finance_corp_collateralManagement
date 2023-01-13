@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: CollateralManagement
+server:
+  port: 9070
