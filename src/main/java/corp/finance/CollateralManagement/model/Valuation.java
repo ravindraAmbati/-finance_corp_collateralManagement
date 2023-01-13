@@ -1,9 +1,14 @@
 package corp.finance.CollateralManagement.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Builder
 @Data
@@ -12,21 +17,19 @@ import java.time.LocalDate;
 @EqualsAndHashCode(callSuper = false)
 @ToString
 @Component
-public class Valuation {
+public class Valuation implements Serializable {
 
     private String valuationId;
     private String valuationName;
     private String valuationType;
-    private LocalDate valuatedOn;
-    private LocalDate nextValuationDate;
-    private LocalDate expireDate;
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    private LocalDateTime valuatedOn;
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    private LocalDateTime nextValuationDate;
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    private LocalDateTime expireDate;
     private Audit audit;
-
-    public LocalDate getNextValuationDate() {
-        return this.getValuatedOn().plusYears(1);
-    }
-
-    public LocalDate getExpireDate(){
-        return this.getValuatedOn().plusYears(5);
-    }
 }

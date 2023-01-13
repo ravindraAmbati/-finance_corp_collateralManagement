@@ -3,6 +3,8 @@ package corp.finance.CollateralManagement.model;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
+
 @Builder
 @Data
 @AllArgsConstructor
@@ -10,7 +12,7 @@ import org.springframework.stereotype.Component;
 @EqualsAndHashCode(callSuper = false)
 @ToString
 @Component
-public class Collateral {
+public class Collateral implements Serializable {
 
     private String collateralId;
     private String collateralName;

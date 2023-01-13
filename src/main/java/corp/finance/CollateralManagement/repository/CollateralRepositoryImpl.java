@@ -36,7 +36,7 @@ public class CollateralRepositoryImpl implements CollateralRepository {
                 .valuationId("vlt001")
                 .valuationType("OnSite")
                 .valuationName("Land")
-                .valuatedOn(LocalDate.of(2021, Month.DECEMBER, 14))
+                .valuatedOn(LocalDateTime.of(2021, Month.DECEMBER, 14, 14, 59))
                 .audit(audit)
                 .build();
         collateral = Collateral
